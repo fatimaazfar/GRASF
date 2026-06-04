@@ -178,7 +178,7 @@ grasf inject
 ## Contributing
 
 ```bash
-git clone https://github.com/your-org/grasf
+git clone https://github.com/fatimaazfar/grasf
 cd grasf
 npm install
 node --test test/**/*.test.js   # Run unit tests (44 tests)
