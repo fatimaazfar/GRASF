@@ -1,1 +1,33 @@
+# Secrets — never commit
+.env
+.env.*
+
+# Dependencies
+node_modules/
+
+# GRASF graph data — contributors need this locally for testing,
+# but it should not be committed (each developer has their own graph)
+.grasf/
+
+# npm publish artifacts
+*.tgz
+
+# Build spec — excluded from the published package and from git
+# (internal document — see GRASF_BUILD.md in the repo if you have access)
 GRASF_BUILD.md
+
+# Claude Code local config (project-specific hooks are in .claude/settings.json
+# and CAN be committed if you want to share hook config with the team;
+# exclude the directory entirely if you prefer not to)
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
