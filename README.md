@@ -181,11 +181,11 @@ grasf inject
 git clone https://github.com/fatimaazfar/grasf
 cd grasf
 npm install
-node --test test/**/*.test.js   # Run unit tests (44 tests)
-node test/integration-layer0.mjs   # Layer 0 integration test
-node test/integration-layer1.mjs   # Layer 1 (requires ANTHROPIC_API_KEY or uses invalid key for fallback test)
-node test/integration-layer2.mjs   # Layer 2 (requires Ollama or tests graceful fallback)
-node test/integration.test.js      # Mocked Layer 1 + Layer 2 end-to-end (no credentials needed)
+node --test test/**/*.test.js        # Unit + mocked integration tests (44 tests, no credentials)
+node test/integration-layer0.mjs    # Layer 0 full pipeline — no credentials needed
+node test/integration-layer1.mjs    # Layer 1 graceful fallback — uses invalid key, no real key needed
+node test/integration-layer2.mjs    # Layer 2 graceful fallback — no Ollama needed
+node test/integration.test.js       # Mocked Layer 1 + 2 end-to-end with path normalisation
 ```
 
 **Before opening a PR:**
