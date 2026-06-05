@@ -24,7 +24,7 @@ import { installHooks, uninstallHooks }   from './hooks/install.js'
 function requireInit() {
   const root = findRepoRoot()
   if (!root) {
-    log.error('Not initialized. Run `grasf init` first.')
+    log.error('Not initialized. Run `graasf init` first.')
     process.exit(1)
   }
   return root
@@ -70,7 +70,7 @@ function layerInitLines(layerInfo) {
   return [
     `  Layer: Structural (free)`,
     `    → Code structure tracked automatically.`,
-    `    → Type grasf:decision <text> in any prompt to record decisions.`,
+    `    → Type graasf:decision <text> in any prompt to record decisions.`,
     `    → Set ANTHROPIC_API_KEY for full semantic extraction.`,
   ]
 }
@@ -133,13 +133,13 @@ async function cmdInit() {
 
   const hooksLabel = hookResult.installed ? 'installed' : hookResult.reason
 
-  log.info(`✓ GRASF initialized — ${projectName}`)
+  log.info(`✓ GRAASF initialized — ${projectName}`)
   log.info(`  Graph: ${stats.nodesCreated} nodes built from codebase`)
   log.info(`  Hooks: ${hooksLabel} (Stop, UserPromptSubmit, SessionStart)`)
   for (const line of layerInitLines(layerInfo)) log.info(line)
   log.info('')
-  log.info('  Start Claude Code normally. GRASF runs in the background.')
-  log.info('  Run `grasf status` at any time to inspect the graph.')
+  log.info('  Start Claude Code normally. GRAASF runs in the background.')
+  log.info('  Run `graasf status` at any time to inspect the graph.')
 }
 
 async function cmdInject(opts) {
@@ -180,7 +180,7 @@ async function cmdStatus() {
   const lastSess  = db.prepare('SELECT * FROM sessions ORDER BY ended_at DESC LIMIT 1').get()
 
   const sep = '─────────────────────────────'
-  log.info(`GRASF — ${config.project_name || basename(repoRoot)}`)
+  log.info(`GRAASF — ${config.project_name || basename(repoRoot)}`)
   log.info(sep)
   log.info(`Graph: ${total} total nodes`)
   if (total > 0) {
@@ -205,12 +205,12 @@ async function cmdStatus() {
   let hooked = false
   try {
     const p = join(repoRoot, '.claude', 'settings.json')
-    if (existsSync(p)) hooked = JSON.stringify(JSON.parse(readFileSync(p, 'utf8'))).toLowerCase().includes('grasf')
+    if (existsSync(p)) hooked = JSON.stringify(JSON.parse(readFileSync(p, 'utf8'))).toLowerCase().includes('graasf')
   } catch { /* ignore */ }
   log.info(`Hooks: ${hooked ? '✓ installed' : '✗ not installed'} (Stop, UserPromptSubmit, SessionStart)`)
   log.info(`DB: ${dbSizeStr(repoRoot)}`)
   log.info(sep)
-  log.info("Run `grasf inject` to regenerate context files.")
+  log.info("Run `graasf inject` to regenerate context files.")
 }
 
 function cmdQuery(text) {
@@ -245,7 +245,7 @@ function cmdHooksUninstall() {
   const repoRoot = requireInit()
   const result   = uninstallHooks(repoRoot)
   if (result.uninstalled) {
-    log.info('✓ GRASF hooks removed from .claude/settings.json')
+    log.info('✓ GRAASF hooks removed from .claude/settings.json')
     const config = loadConfig(repoRoot)
     saveConfig(repoRoot, { ...config, hooks_installed: false })
   } else {
@@ -362,7 +362,7 @@ async function cmdWatch() {
 // ── Program ───────────────────────────────────────────────────────────────────
 
 const program = new Command()
-program.name('grasf').description('Graph Retrieval and Awareness Session Framework').version('0.1.0')
+program.name('graasf').description('Graph Retrieval and Awareness Session Framework').version('0.1.1')
 
 program.command('init').description('Scan repo, build initial graph, install Claude Code hooks')
   .action(() => cmdInit().catch(e => { log.error(e.message); process.exit(1) }))
@@ -389,9 +389,9 @@ program.command('gc').description('Archive remnant nodes older than 30 days')
   .action(() => { try { cmdGc() } catch (e) { log.error(e.message); process.exit(1) } })
 
 const hooks = program.command('hooks').description('Manage Claude Code hooks')
-hooks.command('install').description('(Re)install GRASF hooks into .claude/settings.json')
+hooks.command('install').description('(Re)install GRAASF hooks into .claude/settings.json')
   .action(() => { try { cmdHooksInstall() } catch (e) { log.error(e.message); process.exit(1) } })
-hooks.command('uninstall').description('Remove GRASF hooks from .claude/settings.json')
+hooks.command('uninstall').description('Remove GRAASF hooks from .claude/settings.json')
   .action(() => { try { cmdHooksUninstall() } catch (e) { log.error(e.message); process.exit(1) } })
 
 const session = program.command('session').description('Session management')

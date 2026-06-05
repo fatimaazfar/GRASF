@@ -164,7 +164,7 @@ test('Generated CLAUDE.md Layer 0 empty-state annotation prompt includes files f
   // The decisions empty-state must mention the touched files
   assert.ok(content.includes('auth.js') || content.includes('token.js'),
     'Empty-state must reference files from last session')
-  assert.ok(content.includes('grasf:decision'), 'Empty-state must prompt to record a decision')
+  assert.ok(content.includes('graasf:decision'), 'Empty-state must prompt to record a decision')
 })
 
 test('Generated CLAUDE.md omits Remnant traces section entirely when no remnants', () => {

@@ -88,7 +88,7 @@ test('parseTranscript correctly parses a sample JSONL', () => {
     JSON.stringify({ role: 'user', content: 'Hello, help me refactor auth', timestamp: '2026-01-01T10:00:00Z' }),
     JSON.stringify({ role: 'assistant', content: [{ type: 'text', text: 'Sure, let me look at the auth module.' }], timestamp: '2026-01-01T10:00:01Z' }),
     // nested message format (older Claude Code)
-    JSON.stringify({ message: { role: 'user', content: 'grasf:decision Use JWT' }, timestamp: '2026-01-01T10:00:02Z' }),
+    JSON.stringify({ message: { role: 'user', content: 'graasf:decision Use JWT' }, timestamp: '2026-01-01T10:00:02Z' }),
     '', // empty line — should be skipped
     'not-json', // malformed — should be skipped
   ].join('\n')
@@ -103,7 +103,7 @@ test('parseTranscript correctly parses a sample JSONL', () => {
     assert.equal(messages[0].content, 'Hello, help me refactor auth')
     assert.equal(messages[1].role, 'assistant')
     assert.equal(messages[2].role, 'user') // nested format resolved
-    assert.equal(messages[2].content, 'grasf:decision Use JWT')
+    assert.equal(messages[2].content, 'graasf:decision Use JWT')
   } finally {
     rmSync(dir, { recursive: true, force: true })
   }
@@ -139,10 +139,10 @@ test('extractTextContent returns empty string for unexpected content', () => {
 test('parseAnnotations extracts all four annotation types from a prompt', () => {
   const prompt = [
     'I want to make some notes.',
-    'grasf:goal Build stateless auth using JWT tokens',
-    'grasf:decision Use RS256 signing — required for gateway verification',
-    'grasf:note Token TTL should be 15 minutes per security policy',
-    'grasf:dead-end Redis session store — adds infra dependency, abandoned',
+    'graasf:goal Build stateless auth using JWT tokens',
+    'graasf:decision Use RS256 signing — required for gateway verification',
+    'graasf:note Token TTL should be 15 minutes per security policy',
+    'graasf:dead-end Redis session store — adds infra dependency, abandoned',
   ].join('\n')
 
   const results = parseAnnotations(prompt)
@@ -172,7 +172,7 @@ test('parseAnnotations returns empty array for prompt with no annotations', () =
 })
 
 test('parseAnnotations handles single annotation with no trailing text', () => {
-  const results = parseAnnotations('grasf:decision Use PostgreSQL')
+  const results = parseAnnotations('graasf:decision Use PostgreSQL')
   assert.equal(results.length, 1)
   assert.equal(results[0].type, 'decision')
   assert.equal(results[0].text, 'Use PostgreSQL')

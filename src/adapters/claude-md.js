@@ -50,10 +50,10 @@ export function renderClaudeMd(slice, projectName, layerInfo, repoRoot = null) {
   const lines = []
 
   // ── Header ──────────────────────────────────────────────────────────────────
-  lines.push(`# GRASF Context — ${projectName}`)
+  lines.push(`# GRAASF Context — ${projectName}`)
   lines.push(`Generated: ${ts} | Layer: ${layer}${model ? ` (${model})` : ''} | Scope: ${slice.scope} | Graph: ${slice.totalNodes} nodes (${slice.activeCount} active)`)
   if (layer === 'structural') {
-    lines.push('Note: Semantic extraction inactive. Type `grasf:decision <text>` in any prompt to record decisions.')
+    lines.push('Note: Semantic extraction inactive. Type `graasf:decision <text>` in any prompt to record decisions.')
   }
   lines.push('')
 
@@ -77,7 +77,7 @@ export function renderClaudeMd(slice, projectName, layerInfo, repoRoot = null) {
     lines.push(slice.lastSession.goal)
     if (slice.lastSession.next_step) lines.push(`Next: ${slice.lastSession.next_step}`)
   } else if (layer === 'structural') {
-    lines.push('(not recorded — type `grasf:goal <text>` in your next prompt)')
+    lines.push('(not recorded — type `graasf:goal <text>` in your next prompt)')
   }
   lines.push('')
 
@@ -93,9 +93,9 @@ export function renderClaudeMd(slice, projectName, layerInfo, repoRoot = null) {
     if (lastFiles.length > 0) {
       const fileList = lastFiles.slice(0, 3).map(f => f.split('/').pop() || f).join(' and ')
       lines.push(`(none recorded — last session touched ${fileList}.`)
-      lines.push(' Type `grasf:decision <text>` to record why.)')
+      lines.push(' Type `graasf:decision <text>` to record why.)')
     } else {
-      lines.push('(none recorded — type `grasf:decision <text>` in any prompt to record decisions)')
+      lines.push('(none recorded — type `graasf:decision <text>` in any prompt to record decisions)')
     }
   } else {
     lines.push('(none recorded this session)')
@@ -115,7 +115,7 @@ export function renderClaudeMd(slice, projectName, layerInfo, repoRoot = null) {
       lines.push(`- \`${dispName}\`${loc}${summary}`)
     }
   } else {
-    lines.push('(graph empty — run `grasf init` to scan the codebase)')
+    lines.push('(graph empty — run `graasf init` to scan the codebase)')
   }
   lines.push('')
 

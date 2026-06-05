@@ -183,7 +183,7 @@ export function refundPayment(chargeId) {
     execFileSync('git', ['commit', '-m', 'init'],                   { cwd: testDir, stdio: 'pipe' })
   } catch { /* git optional */ }
 
-  // grasf init — builds the SQLite DB using structural layer (no API calls)
+  // graasf init — builds the SQLite DB using structural layer (no API calls)
   execFileSync(NODE, [GRASF_BIN, 'init'], {
     cwd: testDir, encoding: 'utf8',
     env: { ...process.env, GRASF_LAYER: 'structural', ANTHROPIC_API_KEY: '' }

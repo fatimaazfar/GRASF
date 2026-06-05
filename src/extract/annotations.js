@@ -1,16 +1,16 @@
-// Pure string parser for grasf:* annotations embedded in prompt text.
+// Pure string parser for graasf:* annotations embedded in prompt text.
 // No LLM, no network, no side effects — always safe to call.
 //
 // Supported annotations (spec: Annotation System):
-//   grasf:goal <text>      → type: 'goal'
-//   grasf:decision <text>  → type: 'decision'
-//   grasf:note <text>      → type: 'note'
-//   grasf:dead-end <text>  → type: 'dead_end'
+//   graasf:goal <text>      → type: 'goal'
+//   graasf:decision <text>  → type: 'decision'
+//   graasf:note <text>      → type: 'note'
+//   graasf:dead-end <text>  → type: 'dead_end'
 //
 // Returns array of { type, text } objects.
 // Multiple annotations in one prompt are supported.
 
-const ANNOTATION_RE = /grasf:(goal|decision|note|dead-end)\s+(.+?)(?=\s*grasf:|$)/gs
+const ANNOTATION_RE = /graasf:(goal|decision|note|dead-end)\s+(.+?)(?=\s*graasf:|$)/gs
 
 export function parseAnnotations(promptText) {
   if (!promptText) return []

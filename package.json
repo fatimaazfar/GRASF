@@ -1,9 +1,9 @@
 {
   "name": "graasf",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Graph Retrieval and Awareness Session Framework — persistent knowledge graph for AI coding sessions",
   "bin": {
-    "grasf": "bin/grasf.js"
+    "graasf": "bin/grasf.js"
   },
   "type": "module",
   "engines": {

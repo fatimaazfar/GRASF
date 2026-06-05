@@ -43,7 +43,7 @@ export function renderAgentsMd(slice, projectName, layerInfo) {
       lines.push(`- \`${n.name}\`${loc}${summary}`)
     }
   } else {
-    lines.push('(no active context — run `grasf init` to scan the codebase)')
+    lines.push('(no active context — run `graasf init` to scan the codebase)')
   }
   lines.push('')
 

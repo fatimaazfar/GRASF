@@ -4,7 +4,7 @@
 // then delegates to extractStructural() for AST parsing and node creation.
 // Returns { filesScanned, nodesCreated }.
 //
-// This is the FULL scan run once by `grasf init`.
+// This is the FULL scan run once by `graasf init`.
 // The per-session incremental rescan is handled by structural.js directly (called by stop.js).
 
 import { readdirSync } from 'node:fs'

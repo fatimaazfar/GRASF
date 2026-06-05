@@ -1,6 +1,6 @@
-// spec: src/hooks/install.js — Write GRASF hooks to .claude/settings.json
-// installHooks: merge with existing hooks; skip if "grasf" already present (string match)
-// uninstallHooks: remove only grasf hook entries, leave all others intact
+// spec: src/hooks/install.js — Write GRAASF hooks to .claude/settings.json
+// installHooks: merge with existing hooks; skip if "graasf" already present (string match)
+// uninstallHooks: remove only graasf hook entries, leave all others intact
 
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
@@ -21,7 +21,7 @@ export function installHooks(projectRoot) {
   const path     = settingsPath(projectRoot)
   const settings = loadSettings(path)
 
-  if (JSON.stringify(settings).toLowerCase().includes('grasf')) {
+  if (JSON.stringify(settings).toLowerCase().includes('graasf')) {
     return { installed: false, reason: 'already installed' }
   }
 
@@ -52,7 +52,7 @@ export function uninstallHooks(projectRoot) {
   for (const event of ['Stop', 'UserPromptSubmit', 'SessionStart']) {
     if (!settings.hooks[event]) continue
     settings.hooks[event] = settings.hooks[event]
-      .map(group => ({ ...group, hooks: (group.hooks || []).filter(h => !h.command?.toLowerCase().includes('grasf')) }))
+      .map(group => ({ ...group, hooks: (group.hooks || []).filter(h => !h.command?.toLowerCase().includes('graasf')) }))
       .filter(group => group.hooks.length > 0)
     if (settings.hooks[event].length === 0) delete settings.hooks[event]
   }

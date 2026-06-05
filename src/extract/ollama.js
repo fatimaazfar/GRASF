@@ -36,7 +36,7 @@ export async function generate(url, model, prompt, timeoutMs = 30000) {
   } catch (err) {
     clearTimeout(timer)
     if (err.name === 'AbortError') {
-      console.warn('[GRASF] Ollama generate timed out — falling back to structural')
+      console.warn('[GRAASF] Ollama generate timed out — falling back to structural')
     }
     return null
   }

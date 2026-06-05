@@ -105,7 +105,7 @@ function scanFile(db, filePath, scope, gitHash) {
   try {
     tree = parser.parse(source)
   } catch (err) {
-    console.warn(`[GRASF] Tree-sitter parse failed for ${filePath}: ${err.message}`)
+    console.warn(`[GRAASF] Tree-sitter parse failed for ${filePath}: ${err.message}`)
     return
   }
 
@@ -159,7 +159,7 @@ export async function extractStructural(db, changedFiles, scope = 'root', gitHas
     try {
       scanFile(db, filePath, scope, gitHash)
     } catch (err) {
-      console.warn(`[GRASF] Structural extraction error for ${filePath}: ${err.message}`)
+      console.warn(`[GRAASF] Structural extraction error for ${filePath}: ${err.message}`)
     }
   }
 }

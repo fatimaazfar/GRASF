@@ -1,10 +1,10 @@
-# Contributing to GRASF
+# Contributing to GRAASF
 
 ## Before you write any code — read the spec
 
 `GRASF_BUILD.md` is the single source of truth for every design decision in this project. Before touching any file, read the relevant section. If your change conflicts with the spec, the spec wins. If the spec is wrong, open a discussion before writing code.
 
-This rule exists because GRASF's components are tightly coupled — the schema, the hook sequence, the layer detection logic, the CLAUDE.md template, and the decay scoring all depend on each other. Changes that seem isolated often aren't.
+This rule exists because GRAASF's components are tightly coupled — the schema, the hook sequence, the layer detection logic, the CLAUDE.md template, and the decay scoring all depend on each other. Changes that seem isolated often aren't.
 
 ---
 
@@ -52,7 +52,7 @@ If you think a new dependency is necessary, open an issue first. The bar is: the
 
 ## Build order and where to start
 
-GRASF was built in this order. If you're onboarding or adding a feature, this tells you what depends on what:
+GRAASF was built in this order. If you're onboarding or adding a feature, this tells you what depends on what:
 
 1. **Schema** (`schema.sql`) — The SQLite schema. Everything else builds on top of it.
 2. **Graph layer** (`src/graph/`) — Node/edge CRUD, decay scoring, FTS5.
