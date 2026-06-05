@@ -1,5 +1,5 @@
 {
-  "name": "@fatimaazfar/grasf",
+  "name": "grsf",
   "version": "0.1.0",
   "description": "Graph Retrieval and Awareness Session Framework — persistent knowledge graph for AI coding sessions",
   "bin": {
